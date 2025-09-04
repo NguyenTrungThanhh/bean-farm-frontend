@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+    width: 4px;
+}
+html::-webkit-scrollbar-thumb {
+    background: #008b4b;
+    border-radius: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar {
+    width: 4px;
+    border-radius: 9999px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 9999px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+    background-color: #008b4b;
+    border-radius: 10px;
+}
+
+.sticky-container {
+    position: relative;
+}
+
+.sticky-map {
+    position: sticky;
+    top: 8px; /* Dính sau khi cuộn cách 8px */
+}
+
+/* Cho phép mỗi item tỏa bóng nhưng không lộ slide khác */
+.swiper-slide > div {
+    overflow: visible;
+    position: relative;
+    z-index: 10;
+}
+
+.swiper-slide > div:hover {
+    z-index: 30;
+}
+
+.swiper-pagination {
+    position: absolute !important;
+    bottom: -35px !important;
+    left: 30% !important;
+    transform: translateX(-50%);
+    display: flex !important;
+}
+
+.swiper-pagination-bullet {
+    background-color: #008b4b !important;
+    opacity: 0.5;
+    transition: all 0.3s;
+    width: 20px !important;
+    height: 7px !important;
+    border-radius: 3px !important;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+/* Ẩn scrollbar cho Webkit (Chrome, Safari) */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Firefox */
+.scrollbar-hide {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE và Edge */
+}
