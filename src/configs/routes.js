@@ -17,6 +17,8 @@ const routes = {
     Login: '/login',
     Register: '/register',
     VerifyEmail: '/verify-email',
+    DonHangCuaBan: '/don-hang-cua-ban',
+    DoiMatKhau: '/doi-mat-khau',
 
     // Danh mục sản phẩm
     RauCuQua: '/rau-cu-qua',

@@ -32,7 +32,6 @@ function Login() {
 
                 if (token) {
                     localStorage.setItem('authToken', token);
-                    localStorage.setItem('userId', response.data.user.id);
                     localStorage.setItem('username', response.data.user.name);
                     localStorage.setItem('email', response.data.user.email);
 
