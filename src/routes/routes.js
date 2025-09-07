@@ -16,10 +16,12 @@ const SoSanhSanPham = lazy(() => import('@/pages/SoSanhSanPham'));
 const SanPhamYeuThich = lazy(() => import('@/pages/SanPhamYeuThich'));
 const GioHang = lazy(() => import('@/pages/GioHang'));
 
-const Account = lazy(() => import('@/pages/Account'));
-const Login = lazy(() => import('@/pages/Login'));
 const Register = lazy(() => import('@/pages/Register'));
 const VerifyEmail = lazy(() => import('@/pages/VerifyEmail'));
+const Login = lazy(() => import('@/pages/Login'));
+const Account = lazy(() => import('@/pages/Account'));
+const DonHangCuaBan = lazy(() => import('@/pages/DonHangCuaBan'));
+const DoiMatKhau = lazy(() => import('@/pages/DoiMatKhau'));
 
 const ChinhSachThanhVien = lazy(() => import('@/pages/ChinhSachThanhVien'));
 const ChinhSachThanhToan = lazy(() => import('@/pages/ChinhSachThanhToan'));
@@ -58,10 +60,12 @@ const publicRoutes = [
     { path: config.routes.SanPhamYeuThich, component: SanPhamYeuThich },
     { path: config.routes.GioHang, component: GioHang },
 
-    { path: config.routes.Account, component: Account },
-    { path: config.routes.Login, component: Login },
     { path: config.routes.Register, component: Register },
     { path: config.routes.VerifyEmail, component: VerifyEmail },
+    { path: config.routes.Login, component: Login },
+    { path: config.routes.Account, component: Account },
+    { path: config.routes.DonHangCuaBan, component: DonHangCuaBan },
+    { path: config.routes.DoiMatKhau, component: DoiMatKhau },
 
     { path: config.routes.ChinhSachThanhVien, component: ChinhSachThanhVien },
     { path: config.routes.ChinhSachThanhToan, component: ChinhSachThanhToan },

@@ -1,7 +1,19 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import config from '@/configs';
 
-function SidebarAccount({ username, onLogout }) {
+function SidebarAccount() {
+    const navigate = useNavigate();
+
+    const username = localStorage.getItem('username');
+
+    const handleLogout = () => {
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('username');
+        localStorage.removeItem('email');
+
+        navigate(config.routes.home);
+    };
+
     return (
         <div className="w-[24%]">
             <div className="mb-7">
@@ -39,7 +51,7 @@ function SidebarAccount({ username, onLogout }) {
                     Đổi mật khẩu
                 </NavLink>
 
-                <h1 className="hover:text-primary-yellow duration-300 cursor-pointer" onClick={onLogout}>
+                <h1 className="hover:text-primary-yellow duration-300 cursor-pointer" onClick={handleLogout}>
                     Đăng xuất
                 </h1>
             </div>
