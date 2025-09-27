@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '@/api/axiosConfig';
 import { createContext, useEffect, useState } from 'react';
 
 export const BeanFarmContext = createContext();

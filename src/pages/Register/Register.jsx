@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '@/api/axiosConfig';
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -32,10 +32,7 @@ function Register() {
         }),
         onSubmit: async (values) => {
             try {
-                const response = await axios.post(
-                    `${import.meta.env.VITE_API_URL}/api/v1/client/user/register`,
-                    values,
-                );
+                const response = await axios.post('/api/v1/client/user/register', values);
                 if (response.data.success) {
                     toast.success(response.data.message);
                     setVerifyMessage(

@@ -13,10 +13,10 @@ const routes = {
     SanPhamYeuThich: '/san-pham-yeu-thich',
     GioHang: '/gio-hang',
 
-    Account: '/account',
-    Login: '/login',
     Register: '/register',
     VerifyEmail: '/verify-email',
+    Login: '/login',
+    Account: '/account',
     DonHangCuaBan: '/don-hang-cua-ban',
     DoiMatKhau: '/doi-mat-khau',
 

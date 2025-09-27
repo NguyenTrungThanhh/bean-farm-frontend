@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function ProductItem(props) {
     const formatPrice = (price) => {
         return price?.toLocaleString('vi-VN') + '₫';
@@ -6,7 +8,9 @@ function ProductItem(props) {
     return (
         <div className="w-[217px] h-[323px] bg-white rounded-xl border border-[#f0f1f2] z-0">
             <div className="relative">
-                <img src={props.image} alt="" className="rounded-xl" />
+                <Link to={`/${props.slug}`}>
+                    <img src={props.image} alt="" className="rounded-xl" />
+                </Link>
                 {props.discount && (
                     <div className="absolute top-3 left-1 bg-red-500 rounded-full px-2">
                         <p className="text-sm text-white">{props.discount}%</p>
@@ -14,7 +18,9 @@ function ProductItem(props) {
                 )}
             </div>
             <div className="text-center">
-                <h1 className="font-semibold mb-2">{props.name}</h1>
+                <Link to={`/${props.slug}`}>
+                    <h1 className="font-semibold mb-2">{props.name}</h1>
+                </Link>
                 <div className="flex items-center justify-center gap-2">
                     <p className="line-through text-xs text-[#838383] font-medium">
                         {props.oldPrice && formatPrice(props.oldPrice)}

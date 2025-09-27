@@ -5,6 +5,7 @@ import DefaultLayout from '@/layouts/DefaultLayout';
 import { publicRoutes } from '@/routes';
 import ScrollToTop from '@/components/ScrollToTop';
 import PrivateRouteAdmin from '@/components/PrivateRouteAdmin';
+import PrivateRouteUser from '@/components/PrivateRouteUser';
 
 function App() {
     return (
@@ -38,7 +39,11 @@ function App() {
                                             </div>
                                         }
                                     >
-                                        {isAdminRoute ? (
+                                        {route.private ? (
+                                            <PrivateRouteUser>
+                                                <Page />
+                                            </PrivateRouteUser>
+                                        ) : isAdminRoute ? (
                                             <PrivateRouteAdmin>
                                                 <Page />
                                             </PrivateRouteAdmin>

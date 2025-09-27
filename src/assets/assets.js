@@ -184,6 +184,12 @@ export const assets = {
     QRZalo,
     tatCaSanPham1,
     tatCaSanPham2,
+    hanhTay,
+    ngoRi,
+    dauCove,
+    caChuaHaLan,
+    biDao,
+    dauBap,
 };
 
 export const product = [

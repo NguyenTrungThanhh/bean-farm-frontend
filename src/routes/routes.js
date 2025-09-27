@@ -36,11 +36,12 @@ const HuongDanThanhToan = lazy(() => import('@/pages/HuongDanThanhToan'));
 const ChuongTrinhCongTacVien = lazy(() => import('@/pages/ChuongTrinhCongTacVien'));
 
 // Lazy load Admin pages
-
-// Lazy load Display pages
 const Admin = lazy(() => import('@/pages/Admin'));
 const AddTinTuc = lazy(() => import('@/pages/AddTinTuc'));
 const ListTinTuc = lazy(() => import('@/pages/ListTinTuc'));
+
+// Lazy load Display pages
+const DisplayProduct = lazy(() => import('@/pages/DisplayProduct'));
 
 // Admin Layout
 import AdminLayout from '@/layouts/AdminLayout';
@@ -85,6 +86,7 @@ const publicRoutes = [
     { path: config.routes.listTinTuc, component: ListTinTuc, layout: AdminLayout },
 
     // Display Pages
+    { path: '/:slug', component: DisplayProduct },
 ];
 
 const privateRoutes = [];

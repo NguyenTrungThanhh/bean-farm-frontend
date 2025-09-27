@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '@/api/axiosConfig';
 import { useEffect, useState } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -29,7 +29,7 @@ function AddTinTuc() {
             formData.append('date', date);
             formData.append('image', image);
 
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/admin/TinTuc/add`, formData, {
+            const response = await axios.post('/api/v1/admin/TinTuc/add', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
 
@@ -59,15 +59,11 @@ function AddTinTuc() {
                         formData.append('image', file); // phải là 'image' vì backend dùng upload.single('image')
 
                         try {
-                            const res = await axios.post(
-                                `${import.meta.env.VITE_API_URL}/api/v1/admin/upload-image`,
-                                formData,
-                                {
-                                    headers: {
-                                        'Content-Type': 'multipart/form-data',
-                                    },
+                            const res = await axios.post('/api/v1/admin/upload-image', formData, {
+                                headers: {
+                                    'Content-Type': 'multipart/form-data',
                                 },
-                            );
+                            });
 
                             return {
                                 default: res.data.url, // Cloudinary trả về đường dẫn ảnh

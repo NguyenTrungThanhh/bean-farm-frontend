@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import axios from 'axios';
+import axios from '@/api/axiosConfig';
 import { toast } from 'react-toastify';
 
 function VerifyEmail() {
@@ -19,7 +19,7 @@ function VerifyEmail() {
         }
 
         axios
-            .get(`${import.meta.env.VITE_API_URL}/api/v1/client/user/verify-email?token=${token}`)
+            .get(`/api/v1/client/user/verify-email?token=${token}`)
             .then((res) => {
                 if (res.data.success) {
                     toast.success(res.data.message || 'Xác thực email thành công 🎉');

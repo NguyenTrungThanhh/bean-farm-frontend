@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '@/api/axiosConfig';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,7 +24,7 @@ function Login() {
                 email,
                 password,
             };
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/client/user/login`, user);
+            const response = await axios.post('/api/v1/client/user/login', user);
             console.log(response.data);
 
             if (response.data.success) {

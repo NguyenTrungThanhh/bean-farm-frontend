@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '@/api/axiosConfig';
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
@@ -11,7 +11,7 @@ function ListTinTuc() {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/admin/TinTuc`);
+            const response = await axios.get('/api/v1/admin/TinTuc');
             if (response.data.success) {
                 setData(response.data.news);
             }
@@ -22,7 +22,7 @@ function ListTinTuc() {
 
     const deleteProduct = async (id) => {
         try {
-            const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/v1/admin/TinTuc/delete/${id}`);
+            const response = await axios.delete(`/api/v1/admin/TinTuc/delete/${id}`);
             if (response.data.success) {
                 toast.success('Xóa sản phẩm thành công');
                 fetchProducts();
