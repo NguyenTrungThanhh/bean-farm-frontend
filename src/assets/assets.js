@@ -1,5 +1,9 @@
 import logo from './images/logo/logo.webp';
 
+// ADMIN
+import upload_area from './images/admin/upload_area.png';
+import upload_added from './images/admin/upload_added.png';
+
 // ICONS
 import iconTaiKhoan from './images/icons/icon_tai_khoan.webp';
 import iconHeThong from './images/icons/icon_he_thong.webp';
@@ -24,6 +28,10 @@ import iconZalo from './images/icons/zalo.png';
 import dichVu1 from './images/icons/dichvu_1.webp';
 import dichVu2 from './images/icons/dichvu_2.webp';
 import dichVu3 from './images/icons/dichvu_3.webp';
+import chinhSach1 from './images/icons/chinhsach_1.webp';
+import chinhSach2 from './images/icons/chinhsach_2.webp';
+import chinhSach3 from './images/icons/chinhsach_3.webp';
+import chinhSach4 from './images/icons/chinhsach_4.webp';
 import buttonLoginFacebook from './images/icons/button_login_facbook.svg';
 import buttonLoginGoogle from './images/icons/button_login_google.svg';
 
@@ -109,6 +117,8 @@ import tatCaSanPham2 from './images/tat-ca-san-pham-2.webp';
 
 export const assets = {
     logo,
+    upload_area,
+    upload_added,
     iconTaiKhoan,
     iconHeThong,
     iconSoSanh,
@@ -132,6 +142,10 @@ export const assets = {
     dichVu1,
     dichVu2,
     dichVu3,
+    chinhSach1,
+    chinhSach2,
+    chinhSach3,
+    chinhSach4,
     buttonLoginFacebook,
     buttonLoginGoogle,
     megaMenuBanner,
@@ -927,6 +941,7 @@ export const news = [
     {
         id: 1,
         title: 'Công dụng của gạo lứt tím hữu cơ và cách nấu gạo lứt tím',
+        slug: 'cong-dung-gao-lut-tim-huu-co-va-cach-nau',
         desc: 'Gạo lứt tím là một loại gạo được chế biến từ các hạt gạo nguyên cám có màu tím đặc trưng. Gạo lứt tím cũng được gọi là gạo tím, gạo đen tím hoặc gạo nâu tím. Đây là một loại gạo nguyên cám, nghĩa là lớp vỏ ngoài của hạt gạo vẫn được giữ nguyên, do đó giữ lại nhiều chất dinh dưỡng hơn so với gạo trắng thông thường.',
         date: '20/4/2024',
         image: congDungGaoLut,
@@ -934,6 +949,7 @@ export const news = [
     {
         id: 2,
         title: 'Hướng dẫn cách làm salad dưa chuột thanh mát, bổ dưỡng cho ngày hè',
+        slug: 'huong-dan-lam-salad-dua-chuot-thanh-mat',
         desc: 'Salad dưa chuột là món rất được yêu thích vào ngày hè vì có tính thanh mát, bổ dưỡng. Đặc biệt, các nguyên liệu có trong món ăn này còn có tác dụng kích thích vị giác, giúp người dùng có được cảm giác ngon miệng hơn. Để giúp bạn có được món ăn ngon, đẹp dáng đẹp da cho những ngày hè oi bức thì Organica sẽ hướng dẫn cách làm salad dưa chuột chi tiết và cụ thể nhất.',
         date: '20/4/2024',
         image: lamSaladTuDuaChuotNew,
@@ -941,6 +957,7 @@ export const news = [
     {
         id: 3,
         title: 'Công dụng của tỏi ngâm mật ong ?',
+        slug: 'cong-dung-toi-ngam-mat-ong',
         desc: 'Tỏi và mật ong đều là những gia vị phổ biến có trong mọi căn bếp. Thế nhưng, ít ai biết khi kết hợp hai nguyên liệu này lại sẽ cho ra một phương thuốc dân gian cực kỳ tốt cho sức khỏe. Trong bài viết này, hãy cùng Organica tìm hiểu về công dụng của tỏi ngâm mật ong nhé!',
         date: '20/4/2024',
         image: congDungCuaToiMatOng,
@@ -948,6 +965,7 @@ export const news = [
     {
         id: 4,
         title: '10 Công dụng của khoai tây bạn nhất định phải biết',
+        slug: '10-cong-dung-cua-khoai-tay',
         desc: 'Khoai tây là thực phẩm được sử dụng rộng rãi để chế biến các món ăn từ Á sang Âu. Không chỉ thơm ngon, khoai tây còn có nhiều lợi ích tuyệt vời cho sức khỏe. Qua bài viết này, Organica sẽ chia sẻ đến bạn 10 công dụng của khoai tây. Hãy cùng tìm hiểu để biết được loại củ này tốt với sức khỏe như thế nào nhé!',
         date: '20/4/2024',
         image: MuoiCongDungCuaKhoaiTay,
@@ -955,111 +973,7 @@ export const news = [
     {
         id: 5,
         title: 'Ăn ớt chuông có tác dụng gì cho sức khỏe ?',
-        desc: 'Ớt chuông đỏ là loại rau quả rất được yêu thích vì tác dụng tuyệt vời mà nó đem lại cho sức khỏe. Đặc biệt, việc sở hữu nhiều màu sắc sặc sỡ như vàng, đỏ, cam... giúp ớt chuông tạo nên độ hấp dẫn, đẹp mắt cho món ăn. Trong bài viết này, hãy cùng Organica tìm hiểu xem ăn ớt chuông có tác dụng gì và ăn như thế nào để đạt hiệu quả cao nhất nhé!',
-        date: '20/4/2024',
-        image: tacDungOtChuong,
-    },
-    {
-        id: 1,
-        title: 'Công dụng của gạo lứt tím hữu cơ và cách nấu gạo lứt tím',
-        desc: 'Gạo lứt tím là một loại gạo được chế biến từ các hạt gạo nguyên cám có màu tím đặc trưng. Gạo lứt tím cũng được gọi là gạo tím, gạo đen tím hoặc gạo nâu tím. Đây là một loại gạo nguyên cám, nghĩa là lớp vỏ ngoài của hạt gạo vẫn được giữ nguyên, do đó giữ lại nhiều chất dinh dưỡng hơn so với gạo trắng thông thường.',
-        date: '20/4/2024',
-        image: congDungGaoLut,
-    },
-    {
-        id: 2,
-        title: 'Hướng dẫn cách làm salad dưa chuột thanh mát, bổ dưỡng cho ngày hè',
-        desc: 'Salad dưa chuột là món rất được yêu thích vào ngày hè vì có tính thanh mát, bổ dưỡng. Đặc biệt, các nguyên liệu có trong món ăn này còn có tác dụng kích thích vị giác, giúp người dùng có được cảm giác ngon miệng hơn. Để giúp bạn có được món ăn ngon, đẹp dáng đẹp da cho những ngày hè oi bức thì Organica sẽ hướng dẫn cách làm salad dưa chuột chi tiết và cụ thể nhất.',
-        date: '20/4/2024',
-        image: lamSaladTuDuaChuotNew,
-    },
-    {
-        id: 3,
-        title: 'Công dụng của tỏi ngâm mật ong ?',
-        desc: 'Tỏi và mật ong đều là những gia vị phổ biến có trong mọi căn bếp. Thế nhưng, ít ai biết khi kết hợp hai nguyên liệu này lại sẽ cho ra một phương thuốc dân gian cực kỳ tốt cho sức khỏe. Trong bài viết này, hãy cùng Organica tìm hiểu về công dụng của tỏi ngâm mật ong nhé!',
-        date: '20/4/2024',
-        image: congDungCuaToiMatOng,
-    },
-    {
-        id: 4,
-        title: '10 Công dụng của khoai tây bạn nhất định phải biết',
-        desc: 'Khoai tây là thực phẩm được sử dụng rộng rãi để chế biến các món ăn từ Á sang Âu. Không chỉ thơm ngon, khoai tây còn có nhiều lợi ích tuyệt vời cho sức khỏe. Qua bài viết này, Organica sẽ chia sẻ đến bạn 10 công dụng của khoai tây. Hãy cùng tìm hiểu để biết được loại củ này tốt với sức khỏe như thế nào nhé!',
-        date: '20/4/2024',
-        image: MuoiCongDungCuaKhoaiTay,
-    },
-    {
-        id: 5,
-        title: 'Ăn ớt chuông có tác dụng gì cho sức khỏe ?',
-        desc: 'Ớt chuông đỏ là loại rau quả rất được yêu thích vì tác dụng tuyệt vời mà nó đem lại cho sức khỏe. Đặc biệt, việc sở hữu nhiều màu sắc sặc sỡ như vàng, đỏ, cam... giúp ớt chuông tạo nên độ hấp dẫn, đẹp mắt cho món ăn. Trong bài viết này, hãy cùng Organica tìm hiểu xem ăn ớt chuông có tác dụng gì và ăn như thế nào để đạt hiệu quả cao nhất nhé!',
-        date: '20/4/2024',
-        image: tacDungOtChuong,
-    },
-    {
-        id: 1,
-        title: 'Công dụng của gạo lứt tím hữu cơ và cách nấu gạo lứt tím',
-        desc: 'Gạo lứt tím là một loại gạo được chế biến từ các hạt gạo nguyên cám có màu tím đặc trưng. Gạo lứt tím cũng được gọi là gạo tím, gạo đen tím hoặc gạo nâu tím. Đây là một loại gạo nguyên cám, nghĩa là lớp vỏ ngoài của hạt gạo vẫn được giữ nguyên, do đó giữ lại nhiều chất dinh dưỡng hơn so với gạo trắng thông thường.',
-        date: '20/4/2024',
-        image: congDungGaoLut,
-    },
-    {
-        id: 2,
-        title: 'Hướng dẫn cách làm salad dưa chuột thanh mát, bổ dưỡng cho ngày hè',
-        desc: 'Salad dưa chuột là món rất được yêu thích vào ngày hè vì có tính thanh mát, bổ dưỡng. Đặc biệt, các nguyên liệu có trong món ăn này còn có tác dụng kích thích vị giác, giúp người dùng có được cảm giác ngon miệng hơn. Để giúp bạn có được món ăn ngon, đẹp dáng đẹp da cho những ngày hè oi bức thì Organica sẽ hướng dẫn cách làm salad dưa chuột chi tiết và cụ thể nhất.',
-        date: '20/4/2024',
-        image: lamSaladTuDuaChuotNew,
-    },
-    {
-        id: 3,
-        title: 'Công dụng của tỏi ngâm mật ong ?',
-        desc: 'Tỏi và mật ong đều là những gia vị phổ biến có trong mọi căn bếp. Thế nhưng, ít ai biết khi kết hợp hai nguyên liệu này lại sẽ cho ra một phương thuốc dân gian cực kỳ tốt cho sức khỏe. Trong bài viết này, hãy cùng Organica tìm hiểu về công dụng của tỏi ngâm mật ong nhé!',
-        date: '20/4/2024',
-        image: congDungCuaToiMatOng,
-    },
-    {
-        id: 4,
-        title: '10 Công dụng của khoai tây bạn nhất định phải biết',
-        desc: 'Khoai tây là thực phẩm được sử dụng rộng rãi để chế biến các món ăn từ Á sang Âu. Không chỉ thơm ngon, khoai tây còn có nhiều lợi ích tuyệt vời cho sức khỏe. Qua bài viết này, Organica sẽ chia sẻ đến bạn 10 công dụng của khoai tây. Hãy cùng tìm hiểu để biết được loại củ này tốt với sức khỏe như thế nào nhé!',
-        date: '20/4/2024',
-        image: MuoiCongDungCuaKhoaiTay,
-    },
-    {
-        id: 5,
-        title: 'Ăn ớt chuông có tác dụng gì cho sức khỏe ?',
-        desc: 'Ớt chuông đỏ là loại rau quả rất được yêu thích vì tác dụng tuyệt vời mà nó đem lại cho sức khỏe. Đặc biệt, việc sở hữu nhiều màu sắc sặc sỡ như vàng, đỏ, cam... giúp ớt chuông tạo nên độ hấp dẫn, đẹp mắt cho món ăn. Trong bài viết này, hãy cùng Organica tìm hiểu xem ăn ớt chuông có tác dụng gì và ăn như thế nào để đạt hiệu quả cao nhất nhé!',
-        date: '20/4/2024',
-        image: tacDungOtChuong,
-    },
-    {
-        id: 1,
-        title: 'Công dụng của gạo lứt tím hữu cơ và cách nấu gạo lứt tím',
-        desc: 'Gạo lứt tím là một loại gạo được chế biến từ các hạt gạo nguyên cám có màu tím đặc trưng. Gạo lứt tím cũng được gọi là gạo tím, gạo đen tím hoặc gạo nâu tím. Đây là một loại gạo nguyên cám, nghĩa là lớp vỏ ngoài của hạt gạo vẫn được giữ nguyên, do đó giữ lại nhiều chất dinh dưỡng hơn so với gạo trắng thông thường.',
-        date: '20/4/2024',
-        image: congDungGaoLut,
-    },
-    {
-        id: 2,
-        title: 'Hướng dẫn cách làm salad dưa chuột thanh mát, bổ dưỡng cho ngày hè',
-        desc: 'Salad dưa chuột là món rất được yêu thích vào ngày hè vì có tính thanh mát, bổ dưỡng. Đặc biệt, các nguyên liệu có trong món ăn này còn có tác dụng kích thích vị giác, giúp người dùng có được cảm giác ngon miệng hơn. Để giúp bạn có được món ăn ngon, đẹp dáng đẹp da cho những ngày hè oi bức thì Organica sẽ hướng dẫn cách làm salad dưa chuột chi tiết và cụ thể nhất.',
-        date: '20/4/2024',
-        image: lamSaladTuDuaChuotNew,
-    },
-    {
-        id: 3,
-        title: 'Công dụng của tỏi ngâm mật ong ?',
-        desc: 'Tỏi và mật ong đều là những gia vị phổ biến có trong mọi căn bếp. Thế nhưng, ít ai biết khi kết hợp hai nguyên liệu này lại sẽ cho ra một phương thuốc dân gian cực kỳ tốt cho sức khỏe. Trong bài viết này, hãy cùng Organica tìm hiểu về công dụng của tỏi ngâm mật ong nhé!',
-        date: '20/4/2024',
-        image: congDungCuaToiMatOng,
-    },
-    {
-        id: 4,
-        title: '10 Công dụng của khoai tây bạn nhất định phải biết',
-        desc: 'Khoai tây là thực phẩm được sử dụng rộng rãi để chế biến các món ăn từ Á sang Âu. Không chỉ thơm ngon, khoai tây còn có nhiều lợi ích tuyệt vời cho sức khỏe. Qua bài viết này, Organica sẽ chia sẻ đến bạn 10 công dụng của khoai tây. Hãy cùng tìm hiểu để biết được loại củ này tốt với sức khỏe như thế nào nhé!',
-        date: '20/4/2024',
-        image: MuoiCongDungCuaKhoaiTay,
-    },
-    {
-        id: 5,
-        title: 'Ăn ớt chuông có tác dụng gì cho sức khỏe ?',
+        slug: 'an-ot-chuong-co-tac-dung-gi',
         desc: 'Ớt chuông đỏ là loại rau quả rất được yêu thích vì tác dụng tuyệt vời mà nó đem lại cho sức khỏe. Đặc biệt, việc sở hữu nhiều màu sắc sặc sỡ như vàng, đỏ, cam... giúp ớt chuông tạo nên độ hấp dẫn, đẹp mắt cho món ăn. Trong bài viết này, hãy cùng Organica tìm hiểu xem ăn ớt chuông có tác dụng gì và ăn như thế nào để đạt hiệu quả cao nhất nhé!',
         date: '20/4/2024',
         image: tacDungOtChuong,

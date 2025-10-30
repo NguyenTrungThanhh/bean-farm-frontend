@@ -81,9 +81,11 @@ const routes = {
 
     Search: '/search',
 
-    admin: '/admin',
-    addTinTuc: '/admin/add-tin-tuc',
-    listTinTuc: '/admin/list-tin-tuc',
+    Admin: '/admin',
+    Dashboard: '/admin/dashboard',
+    AddTinTuc: '/admin/add-tin-tuc',
+    ListTinTuc: '/admin/list-tin-tuc',
+    ListUser: '/admin/list-user',
 };
 
 export default routes;

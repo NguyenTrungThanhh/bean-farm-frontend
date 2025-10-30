@@ -122,7 +122,7 @@ function SanPhamNoiBat() {
                             ref={swiperRef}
                             onSlideChange={handleSlideChange}
                             modules={[Grid, Pagination, Navigation]}
-                            slidesPerView={4}
+                            slidesPerView="auto"
                             slidesPerGroup={1}
                             spaceBetween={20}
                             grid={{

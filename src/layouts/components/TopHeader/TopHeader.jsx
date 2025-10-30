@@ -3,7 +3,7 @@ import config from '@/configs';
 import { Link } from 'react-router-dom';
 
 function TopHeader() {
-    const isLogin = localStorage.getItem('authToken');
+    const isLogin = localStorage.getItem('token');
 
     return (
         <div className="h-10 bg-primary-green flex items-center">

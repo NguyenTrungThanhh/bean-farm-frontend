@@ -14,7 +14,7 @@ function AddTinTuc() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        document.title = 'Thêm tin tức - KKC Logistics';
+        document.title = 'Thêm tin tức - Bean Farm';
     }, []);
 
     const handleSubmit = async (e) => {
@@ -56,18 +56,14 @@ function AddTinTuc() {
                 upload: () =>
                     loader.file.then(async (file) => {
                         const formData = new FormData();
-                        formData.append('image', file); // phải là 'image' vì backend dùng upload.single('image')
+                        formData.append('image', file);
 
                         try {
                             const res = await axios.post('/api/v1/admin/upload-image', formData, {
-                                headers: {
-                                    'Content-Type': 'multipart/form-data',
-                                },
+                                headers: { 'Content-Type': 'multipart/form-data' },
                             });
 
-                            return {
-                                default: res.data.url, // Cloudinary trả về đường dẫn ảnh
-                            };
+                            return { default: res.data.url };
                         } catch (error) {
                             console.error('Lỗi upload ảnh:', error);
                             return Promise.reject(error);
@@ -79,132 +75,116 @@ function AddTinTuc() {
 
     return loading ? (
         <div className="grid place-items-center min-h-[80vh]">
-            <div className="w-16 h-16 place-self-center border-4 border-gray-400 border-t-green-800 rounded-full animate-spin"></div>
+            <div className="w-16 h-16 border-4 border-gray-300 border-t-green-600 rounded-full animate-spin"></div>
         </div>
     ) : (
         <>
-            {localStorage.getItem('isAdmin') ? (
-                <form
-                    onSubmit={handleSubmit}
-                    className="flex flex-col items-start gap-8 text-gray-600 pt-8 pl-5 sm:pt-12 sm:pl-12"
-                >
-                    {/* Upload hình ảnh */}
-                    <div className="flex flex-col gap-4">
-                        <p>Tải hình ảnh lên</p>
-                        <input
-                            onChange={(e) => setImage(e.target.files[0])}
-                            type="file"
-                            id="image"
-                            accept="image/*"
-                            hidden
-                        />
-                        <label htmlFor="image">
-                            <img
-                                className="w-24 cursor-pointer"
-                                src={image ? URL.createObjectURL(image) : assets.upload_area}
-                                alt=""
+            {localStorage.getItem('token') && localStorage.getItem('role') === 'admin' ? (
+                <div className="flex justify-center py-10 px-4">
+                    <form
+                        onSubmit={handleSubmit}
+                        className="w-full max-w-3xl bg-white shadow-lg rounded-xl p-8 flex flex-col gap-6"
+                    >
+                        <h2 className="text-2xl font-semibold text-gray-700 border-b pb-3">➕ Thêm tin tức mới</h2>
+
+                        {/* Upload hình ảnh */}
+                        <div className="flex flex-col gap-2">
+                            <label className="font-medium text-gray-700">Hình ảnh</label>
+                            <input
+                                onChange={(e) => setImage(e.target.files[0])}
+                                type="file"
+                                id="image"
+                                accept="image/*"
+                                hidden
                             />
-                        </label>
-                    </div>
+                            <label
+                                htmlFor="image"
+                                className="cursor-pointer border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center hover:bg-gray-50 transition"
+                            >
+                                <img
+                                    className="w-32 h-24 object-cover rounded-md"
+                                    src={image ? URL.createObjectURL(image) : assets.upload_area}
+                                    alt=""
+                                />
+                            </label>
+                        </div>
 
-                    {/* Tiêu đề */}
-                    <div className="flex flex-col gap-2.5 w-2/4">
-                        <p>Tiêu đề</p>
-                        <input
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            className="bg-transparent outline-green-600 border-2 border-gray-400 p-2.5 w-[max(40vw,250px)]"
-                            placeholder="Nhập vào chỗ trống"
-                            type="text"
-                        />
-                    </div>
+                        {/* Tiêu đề */}
+                        <div className="flex flex-col gap-2">
+                            <label className="font-medium text-gray-700">Tiêu đề</label>
+                            <input
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                className="border border-gray-300 rounded-lg p-3 outline-primary-brown"
+                                placeholder="Nhập tiêu đề tin tức"
+                                type="text"
+                            />
+                        </div>
 
-                    {/* Danh mục */}
-                    <div className="flex flex-col gap-2.5 w-2/4">
-                        <p>Danh mục</p>
-                        <input
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                            className="bg-transparent outline-green-600 border-2 border-gray-400 p-2.5 w-[max(40vw,250px)]"
-                            placeholder="Nhập vào chỗ trống"
-                            type="text"
-                        />
-                    </div>
+                        {/* Danh mục */}
+                        <div className="flex flex-col gap-2">
+                            <label className="font-medium text-gray-700">Danh mục</label>
+                            <input
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                                className="border border-gray-300 rounded-lg p-3 outline-primary-brown"
+                                placeholder="Nhập danh mục"
+                                type="text"
+                            />
+                        </div>
 
-                    {/* Mô tả - dùng CKEditor */}
-                    <div className="flex flex-col gap-2.5 w-2/4">
-                        <p>Mô tả</p>
-                        <CKEditor
-                            editor={ClassicEditor}
-                            data={content}
-                            config={{
-                                extraPlugins: [CustomUploadAdapterPlugin],
-                                toolbar: [
-                                    'heading',
-                                    '|',
-                                    'bold',
-                                    'italic',
-                                    'underline',
-                                    'link',
-                                    '|',
-                                    'bulletedList',
-                                    'numberedList',
-                                    'blockQuote',
-                                    'insertTable',
-                                    '|',
-                                    'imageUpload',
-                                    '|',
-                                    'undo',
-                                    'redo',
-                                ],
-                                heading: {
-                                    options: [
-                                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                                        {
-                                            model: 'heading1',
-                                            view: 'h1',
-                                            title: 'Heading 1',
-                                            class: 'ck-heading_heading1',
-                                        },
-                                        {
-                                            model: 'heading2',
-                                            view: 'h2',
-                                            title: 'Heading 2',
-                                            class: 'ck-heading_heading2',
-                                        },
-                                        {
-                                            model: 'heading3',
-                                            view: 'h3',
-                                            title: 'Heading 3',
-                                            class: 'ck-heading_heading3',
-                                        },
+                        {/* Nội dung */}
+                        <div className="flex flex-col gap-2">
+                            <label className="font-medium text-gray-700">Mô tả</label>
+                            <CKEditor
+                                editor={ClassicEditor}
+                                data={content}
+                                config={{
+                                    extraPlugins: [CustomUploadAdapterPlugin],
+                                    toolbar: [
+                                        'heading',
+                                        '|',
+                                        'bold',
+                                        'italic',
+                                        'underline',
+                                        'link',
+                                        '|',
+                                        'bulletedList',
+                                        'numberedList',
+                                        'blockQuote',
+                                        'insertTable',
+                                        '|',
+                                        'imageUpload',
+                                        '|',
+                                        'undo',
+                                        'redo',
                                     ],
-                                },
-                            }}
-                            onChange={(event, editor) => {
-                                const data = editor.getData();
-                                setContent(data);
-                            }}
-                        />
-                    </div>
+                                }}
+                                onChange={(event, editor) => setContent(editor.getData())}
+                            />
+                        </div>
 
-                    {/* Thời gian */}
-                    <div className="flex flex-col gap-2.5 w-2/4">
-                        <p>Thời gian</p>
-                        <input
-                            value={date}
-                            onChange={(e) => setDate(e.target.value)}
-                            className="bg-transparent outline-green-600 border-2 border-gray-400 p-2.5 w-[max(40vw,250px)]"
-                            placeholder="Nhập vào chỗ trống"
-                            type="text"
-                        />
-                    </div>
+                        {/* Thời gian */}
+                        <div className="flex flex-col gap-2">
+                            <label className="font-medium text-gray-700">Thời gian</label>
+                            <input
+                                value={date}
+                                onChange={(e) => setDate(e.target.value)}
+                                className="border border-gray-300 rounded-lg p-3 outline-primary-brown"
+                                placeholder="dd/mm/yyyy"
+                                type="text"
+                            />
+                        </div>
 
-                    {/* Nút submit */}
-                    <button type="submit" className="text-base bg-black text-white py-2.5 px-14 cursor-pointer">
-                        ADD
-                    </button>
-                </form>
+                        {/* Nút submit */}
+                        <button
+                            type="submit"
+                            className="bg-primary-green text-white font-medium py-3 px-6 rounded-lg shadow-md transition hover:bg-primary-yellow hover:text-black duration-300"
+                        >
+                            Thêm tin tức
+                        </button>
+                    </form>
+                </div>
             ) : null}
         </>
     );

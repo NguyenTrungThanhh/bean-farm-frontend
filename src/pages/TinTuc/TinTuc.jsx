@@ -1,41 +1,78 @@
+import axios from '@/api/axiosConfig';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight, faChevronLeft, faChevronRight, faSearch } from '@fortawesome/free-solid-svg-icons';
 import config from '@/configs';
-import { news } from '@/assets/assets';
 import TinTucItem from '@/components/TinTucItem';
 
 function TinTuc() {
-    useEffect(() => {
-        document.title = 'Tin tức';
+    const [tinTucData, setTinTucData] = useState([]);
+    const [tinTucMoiData, setTinTucMoiData] = useState([]);
+    const [pagination, setPagination] = useState({
+        page: 1,
+        limit: 5,
+        totalPages: 1,
+        total: 0,
     });
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5;
+    useEffect(() => {
+        document.title = 'Tin tức - Bean Farm';
+    }, []);
 
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const fetchTinTuc = async (page = 1, category = 'Tin tức') => {
+        try {
+            const query = new URLSearchParams({
+                page,
+                limit: pagination.limit,
+                category,
+            });
 
-    const currentItems = news.slice(indexOfFirstItem, indexOfLastItem);
-    const totalPages = Math.ceil(news.length / itemsPerPage);
+            const res = await axios.get(`/api/v1/client/TinTuc/pagination?${query.toString()}`);
+
+            if (res.data.success) {
+                setTinTucData(res.data.news);
+                setPagination(res.data.pagination);
+            }
+        } catch (error) {
+            console.log('Lỗi khi fetch tin tức:', error);
+        }
+    };
+
+    const fetchTinTucMoi = async (page = 1, category = 'Tin tức') => {
+        try {
+            const query = new URLSearchParams({
+                page,
+                limit: 5,
+                category,
+            });
+
+            const res = await axios.get(`/api/v1/client/TinTuc/pagination?${query.toString()}`);
+
+            if (res.data.success) {
+                setTinTucMoiData(res.data.news);
+            }
+        } catch (error) {
+            console.log('Lỗi khi fetch tin tức:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchTinTuc(1);
+        fetchTinTucMoi(1);
+    }, []);
 
     const nextPage = () => {
-        if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
+        if (pagination.page < pagination.totalPages) {
+            fetchTinTuc(pagination.page + 1);
         }
     };
 
     const prevPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
+        if (pagination.page > 1) {
+            fetchTinTuc(pagination.page - 1);
         }
     };
-
-    const pageNumbers = [];
-    for (let i = 1; i <= totalPages; i++) {
-        pageNumbers.push(i);
-    }
 
     return (
         <div>
@@ -54,19 +91,19 @@ function TinTuc() {
                 <div className="flex gap-4 items-start">
                     <div className="w-[75%]">
                         <div className="flex flex-col gap-8">
-                            {currentItems.map((item, index) => (
+                            {tinTucData.map((item, index) => (
                                 <TinTucItem
                                     key={index}
-                                    title={item.title}
+                                    name={item.name}
                                     slug={item.slug}
-                                    desc={item.desc}
+                                    content={item.content}
                                     date={item.date}
                                     image={item.image}
                                 />
                             ))}
                         </div>
                         <div className="flex justify-center items-center mt-6">
-                            {currentPage > 1 && (
+                            {pagination.page > 1 && (
                                 <button
                                     onClick={prevPage}
                                     className="bg-white text-primary-green w-10 h-9 rounded-lg border hover:bg-primary-green hover:text-white duration-500"
@@ -76,12 +113,12 @@ function TinTuc() {
                             )}
 
                             <div className="flex gap-2 mx-2">
-                                {pageNumbers.map((number) => (
+                                {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map((number) => (
                                     <button
                                         key={number}
-                                        onClick={() => setCurrentPage(number)}
+                                        onClick={() => fetchTinTuc(number)}
                                         className={`w-10 h-9 rounded-lg hover:bg-primary-green font-medium hover:text-white duration-500 ${
-                                            currentPage === number
+                                            pagination.page === number
                                                 ? 'bg-primary-green border border-transparent text-white'
                                                 : 'bg-white border border-[#e5e5e5]'
                                         }`}
@@ -91,7 +128,7 @@ function TinTuc() {
                                 ))}
                             </div>
 
-                            {currentPage < totalPages && (
+                            {pagination.page < pagination.totalPages && (
                                 <button
                                     onClick={nextPage}
                                     className="bg-white text-primary-green w-10 h-9 rounded-lg border hover:bg-primary-green hover:text-white duration-500"
@@ -113,20 +150,24 @@ function TinTuc() {
                                     <FontAwesomeIcon icon={faSearch} />
                                 </button>
                             </div>
-                            <div>
+                            <div className="border border-[#eee] rounded-md">
                                 <h1 className="px-3 py-3 bg-primary-green text-white text-sm font-bold uppercase rounded-t-md">
                                     Bài viết mới
                                 </h1>
-                                <div className="flex flex-col gap-4 p-3">
-                                    {news.slice(0, 5).map((item, index) => (
+                                <div className="flex flex-col gap-4 p-3 bỏ">
+                                    {tinTucMoiData.map((item, index) => (
                                         <div className="flex gap-2" key={index}>
-                                            <div>
-                                                <img src={item.image} alt="" className="w-[100px] h-[63px]" />
-                                            </div>
+                                            <Link to={config.routes.TinTuc + `/${item.slug}`}>
+                                                <div>
+                                                    <img src={item.image} alt="" className="w-[100px] h-[63px]" />
+                                                </div>
+                                            </Link>
                                             <div className="flex-1">
-                                                <h1 className="text-sm font-medium line-clamp-2 hover:text-primary-green duration-300">
-                                                    {item.title}
-                                                </h1>
+                                                <Link to={config.routes.TinTuc + `/${item.slug}`}>
+                                                    <h1 className="text-sm font-medium line-clamp-2 hover:text-primary-green duration-300">
+                                                        {item.name}
+                                                    </h1>
+                                                </Link>
                                             </div>
                                         </div>
                                     ))}

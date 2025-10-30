@@ -88,7 +88,7 @@ function ThitNhapKhau() {
                                     ref={swiperRef}
                                     onSlideChange={handleSlideChange}
                                     modules={[Navigation, Pagination]}
-                                    slidesPerView={4}
+                                    slidesPerView="auto"
                                     spaceBetween={20}
                                     loop={true}
                                     className="rounded-xl overflow-hidden"

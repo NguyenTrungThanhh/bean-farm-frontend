@@ -55,6 +55,14 @@ html::-webkit-scrollbar-thumb {
     z-index: 30;
 }
 
+.thumbs-swiper .swiper-slide-thumb-active img {
+    border: 1px solid #16a34a;
+}
+
+.thumbs-swiper .swiper-slide img:hover {
+    border: 1px solid #16a34a;
+}
+
 .swiper-pagination {
     position: absolute !important;
     bottom: -35px !important;
@@ -86,4 +94,51 @@ html::-webkit-scrollbar-thumb {
 .scrollbar-hide {
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE và Edge */
+}
+
+/* Display Tin tức */
+.content-news-area h2 {
+    font-size: 32px;
+    color: #000;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.content-news-area h3 {
+    font-size: 28px;
+    color: #000;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.content-news-area p {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.content-news-area ul,
+.content-news-area ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.content-news-area ul {
+    list-style-type: disc;
+}
+
+.content-news-area ol {
+    list-style-type: decimal;
+}
+
+.content-news-area li {
+    font-size: 14px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.content-news-area img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin: 1rem 0;
 }

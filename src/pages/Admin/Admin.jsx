@@ -34,7 +34,7 @@ function Admin() {
 
                     toast.success('Đăng nhập thành công');
                     setTimeout(() => {
-                        window.location.href = config.routes.dashboard;
+                        window.location.href = config.routes.Dashboard;
                     }, 3000);
                 } else {
                     toast.error('Lỗi: Không tìm thấy token!');

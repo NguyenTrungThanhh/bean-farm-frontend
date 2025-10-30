@@ -1,27 +1,18 @@
-import { useNavigate } from 'react-router-dom';
-
 function HeaderAdmin() {
-    const navigate = useNavigate();
-
-    const handleLogout = () => {
-        localStorage.removeItem('isAdmin');
-        navigate('/');
-    };
+    if (!(localStorage.getItem('token') && localStorage.getItem('role') === 'admin')) {
+        return null;
+    }
 
     return (
-        <>
-            {localStorage.getItem('isAdmin') ? (
-                <div className="w-full border-b-2 border-gray-200 px-5 sm:px-12 py-4 bg-primary-brown flex justify-between items-center shadow-md">
-                    <h1 className="text-2xl font-bold text-primary-gold">Admin Panel</h1>
-                    <button
-                        className="font-bold px-3 py-2 bg-primary-green text-white rounded-lg hover:opacity-80"
-                        onClick={handleLogout}
-                    >
-                        Đăng xuất
-                    </button>
+        <div className="w-full border-b border-gray-200 px-5 sm:px-8 py-3 bg-white flex justify-between items-center shadow-sm">
+            <h1 className="font-bold text-2xl text-primary-brown">Admin Panel</h1>
+            <div className="flex items-center gap-3">
+                <div className="hidden sm:block">
+                    <h4 className="text-sm font-bold">{localStorage.getItem('username')}</h4>
+                    <p className="text-xs text-gray-500">Developer Frontend</p>
                 </div>
-            ) : null}
-        </>
+            </div>
+        </div>
     );
 }
 

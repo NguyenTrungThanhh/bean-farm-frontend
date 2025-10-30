@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import config from '@/configs';
 
 function ProductItem(props) {
     const formatPrice = (price) => {
@@ -6,9 +7,9 @@ function ProductItem(props) {
     };
 
     return (
-        <div className="w-[217px] h-[323px] bg-white rounded-xl border border-[#f0f1f2] z-0">
+        <div className="w-full h-[323px] bg-white rounded-xl border border-[#f0f1f2] z-0">
             <div className="relative">
-                <Link to={`/${props.slug}`}>
+                <Link to={config.routes.SanPham + `/${props.slug}`}>
                     <img src={props.image} alt="" className="rounded-xl" />
                 </Link>
                 {props.discount && (
@@ -18,7 +19,7 @@ function ProductItem(props) {
                 )}
             </div>
             <div className="text-center">
-                <Link to={`/${props.slug}`}>
+                <Link to={config.routes.SanPham + `/${props.slug}`}>
                     <h1 className="font-semibold mb-2">{props.name}</h1>
                 </Link>
                 <div className="flex items-center justify-center gap-2">

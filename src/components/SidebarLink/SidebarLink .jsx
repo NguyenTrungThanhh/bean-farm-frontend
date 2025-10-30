@@ -1,18 +1,30 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-const SidebarLink = ({ to, text, onClick }) => {
+const SidebarLink = ({ to, text, icon, onClick }) => {
+    const location = useLocation();
+    const isActive = location.pathname === to || location.pathname.startsWith(`${to}/`);
+
     return (
         <Link
             to={to}
-            className="flex items-center gap-2.5 px-4 py-2 w-full rounded-lg bg-transparent text-gray-800 transition-all duration-300 ease-in-out font-medium text-base 
-            hover:bg-primary-green hover:text-white"
             onClick={onClick}
-            style={{ width: '100%' }}
+            className={`group flex items-center gap-3 px-4 py-3 w-full rounded-lg transition-all duration-200 font-medium text-base
+                ${
+                    isActive
+                        ? 'bg-primary-green text-white shadow-md'
+                        : 'text-gray-700 hover:bg-primary-green hover:text-white'
+                }`}
         >
-            <div className="flex items-center gap-5 w-full">
-                <p className="block">{text}</p>
-            </div>
+            {icon && (
+                <FontAwesomeIcon
+                    icon={icon}
+                    className={`w-5 transition-colors duration-200 ${
+                        isActive ? 'text-white' : 'text-gray-500 group-hover:text-white'
+                    }`}
+                />
+            )}
+            <span className="truncate">{text}</span>
         </Link>
     );
 };

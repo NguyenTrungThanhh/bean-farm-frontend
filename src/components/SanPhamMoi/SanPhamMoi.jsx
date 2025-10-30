@@ -24,6 +24,10 @@ function SanPhamMoi() {
         }
     };
 
+    const formatPrice = (price) => {
+        return price?.toLocaleString('vi-VN') + '₫';
+    };
+
     return (
         <div className="my-10">
             <div className="w-full bg-[#f7f7f7] rounded-xl flex">
@@ -80,20 +84,40 @@ function SanPhamMoi() {
                             ref={swiperRef}
                             onSlideChange={handleSlideChange}
                             modules={[Navigation, Pagination]}
-                            slidesPerView={5}
+                            slidesPerView="auto"
                             spaceBetween={20}
                             className="rounded-xl overflow-hidden"
                         >
                             {product.map((item, index) => (
                                 <SwiperSlide key={index} className="!w-[230px]">
-                                    <ProductItem
-                                        slug={item.slug}
-                                        name={item.name}
-                                        image={item.image}
-                                        oldPrice={item.oldPrice}
-                                        newPrice={item.newPrice}
-                                        discount={item.discount}
-                                    />
+                                    <div className="w-full h-[330px] bg-white rounded-xl border border-[#f0f1f2] z-0">
+                                        <div className="relative">
+                                            <Link to={`/${item.slug}`}>
+                                                <img src={item.image} alt="" className="rounded-xl" />
+                                            </Link>
+                                            {item.discount && (
+                                                <div className="absolute top-3 left-1 bg-red-500 rounded-full px-2">
+                                                    <p className="text-sm text-white">{item.discount}%</p>
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="text-center">
+                                            <Link to={`/${item.slug}`}>
+                                                <h1 className="font-semibold mb-2">{item.name}</h1>
+                                            </Link>
+                                            <div className="flex items-center justify-center gap-2">
+                                                <p className="line-through text-xs text-[#838383] font-medium">
+                                                    {item.oldPrice && formatPrice(item.oldPrice)}
+                                                </p>
+                                                <p className="text-sm text-primary-green font-semibold">
+                                                    {formatPrice(item.newPrice)}
+                                                </p>
+                                            </div>
+                                            <button className="text-sm bg-primary-green text-white font-semibold px-6 py-1 rounded-full my-2 hover:bg-primary-yellow hover:text-black duration-300">
+                                                Thêm vào giỏ
+                                            </button>
+                                        </div>
+                                    </div>
                                 </SwiperSlide>
                             ))}
                         </Swiper>

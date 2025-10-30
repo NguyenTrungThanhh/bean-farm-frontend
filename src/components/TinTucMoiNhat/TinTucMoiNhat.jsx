@@ -1,4 +1,5 @@
-import { useRef, useState } from 'react';
+import axios from '@/api/axiosConfig';
+import { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -7,13 +8,14 @@ import 'swiper/css/pagination';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { assets, feedbacks, news, product } from '@/assets/assets';
-import ProductItem from '@/components/ProductItem';
+import { assets, feedbacks } from '@/assets/assets';
+import config from '@/configs';
 
 function TinTucMoiNhat() {
     const swiperRef = useRef(null);
     const paginationRef = useRef(null);
 
+    const [data, setData] = useState([]);
     const [isBeginning, setIsBeginning] = useState(true);
     const [isEnd, setIsEnd] = useState(false);
 
@@ -24,6 +26,28 @@ function TinTucMoiNhat() {
             setIsEnd(swiper.isEnd);
         }
     };
+
+    const fetchData = async (page = 1, category = 'Tin tức') => {
+        try {
+            const query = new URLSearchParams({
+                page,
+                limit: 5,
+                category,
+            });
+
+            const res = await axios.get(`/api/v1/client/TinTuc/pagination?${query.toString()}`);
+
+            if (res.data.success) {
+                setData(res.data.news);
+            }
+        } catch (error) {
+            console.log('Lỗi khi fetch tin tức:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData(1);
+    }, []);
 
     return (
         <div className="my-8">
@@ -89,8 +113,17 @@ function TinTucMoiNhat() {
                                     spaceBetween={20}
                                     className="rounded-xl overflow-hidden cursor-grab"
                                 >
-                                    {news.map((item, index) => {
-                                        const [day, month, year] = item.date.split('/');
+                                    {data.map((item, index) => {
+                                        const dateParts = item.date.match(/(\d{1,2})\s*tháng\s*(\d{1,2})\s*(\d{4})/);
+                                        let day = '',
+                                            month = '',
+                                            year = '';
+
+                                        if (dateParts) {
+                                            day = dateParts[1];
+                                            month = dateParts[2];
+                                            year = dateParts[3];
+                                        }
 
                                         return (
                                             <SwiperSlide key={index}>
@@ -109,10 +142,12 @@ function TinTucMoiNhat() {
                                                     <div className="flex flex-col gap-2 p-3">
                                                         <Link>
                                                             <h1 className="h-12 line-clamp-2 font-semibold">
-                                                                {item.title}
+                                                                {item.name}
                                                             </h1>
                                                         </Link>
-                                                        <p className="line-clamp-3 text-sm text-[#333]">{item.desc}</p>
+                                                        <p className="line-clamp-3 text-sm text-[#333]">
+                                                            {item.content}
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </SwiperSlide>
@@ -120,9 +155,11 @@ function TinTucMoiNhat() {
                                     })}
                                 </Swiper>
                             </div>
-                            <button className="flex justify-center mx-auto mt-6 border border-primary-green rounded-full font-semibold text-primary-green px-6 py-1 hover:bg-primary-yellow hover:text-black hover:border-primary-yellow duration-300">
-                                <Link>Xem tất cả</Link>
-                            </button>
+                            <Link to={config.routes.TinTuc}>
+                                <button className="flex justify-center mx-auto mt-6 border border-primary-green rounded-full font-semibold text-primary-green px-6 py-1 hover:bg-primary-yellow hover:text-black hover:border-primary-yellow duration-300">
+                                    Xem tất cả
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

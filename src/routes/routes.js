@@ -37,11 +37,14 @@ const ChuongTrinhCongTacVien = lazy(() => import('@/pages/ChuongTrinhCongTacVien
 
 // Lazy load Admin pages
 const Admin = lazy(() => import('@/pages/Admin'));
+const Dashboard = lazy(() => import('@/pages/Dashboard'));
 const AddTinTuc = lazy(() => import('@/pages/AddTinTuc'));
 const ListTinTuc = lazy(() => import('@/pages/ListTinTuc'));
+const ListUser = lazy(() => import('@/pages/ListUser'));
 
 // Lazy load Display pages
 const DisplayProduct = lazy(() => import('@/pages/DisplayProduct'));
+const DisplayTinTuc = lazy(() => import('@/pages/DisplayTinTuc'));
 
 // Admin Layout
 import AdminLayout from '@/layouts/AdminLayout';
@@ -81,12 +84,15 @@ const publicRoutes = [
     { path: config.routes.ChuongTrinhCongTacVien, component: ChuongTrinhCongTacVien },
 
     // Admin Pages
-    { path: config.routes.admin, component: Admin, layout: AdminLayout },
-    { path: config.routes.addTinTuc, component: AddTinTuc, layout: AdminLayout },
-    { path: config.routes.listTinTuc, component: ListTinTuc, layout: AdminLayout },
+    { path: config.routes.Admin, component: Admin, layout: AdminLayout },
+    { path: config.routes.Dashboard, component: Dashboard, layout: AdminLayout },
+    { path: config.routes.AddTinTuc, component: AddTinTuc, layout: AdminLayout },
+    { path: config.routes.ListTinTuc, component: ListTinTuc, layout: AdminLayout },
+    { path: config.routes.ListUser, component: ListUser, layout: AdminLayout },
 
     // Display Pages
-    { path: '/:slug', component: DisplayProduct },
+    { path: config.routes.SanPham + '/:slug', component: DisplayProduct },
+    { path: config.routes.TinTuc + '/:slug', component: DisplayTinTuc },
 ];
 
 const privateRoutes = [];
